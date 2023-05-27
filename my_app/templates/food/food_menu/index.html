@@ -1,0 +1,45 @@
+{% extends 'food/layouts/main.html' %}
+{% block title %}
+Sweet Variety | Food-courier
+{% endblock title %}
+
+{% block content %}
+<div class="products">
+  <h3 class="txtfood">{{category_name}}</h3>
+</div>
+<section class="bg-secondary " style="min-height:600px;">
+  <div class="containers">
+    <div class="row">
+      <div class="col-12" >
+        <h4 class="mb-3 text-light">{{category_name}}  variety</h4>
+        <hr style="border-color:#b8bfc2;">
+      </div> 
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item  text-light"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active text-light">{{category_name}} menu</li>
+        </ol>
+      </nav>
+      {% include 'food/inc/message.html' %}
+    <div class="shop-content">
+    {% for item in products %}
+    <a href="{% url 'food_price' category_name item.name %}">
+     <div class="food-box">
+      <div class="pic"><img src="{{item.product_image.url}}"class="food-img" alt="Categories"></div>
+      <div class="anger">
+      <h2 class="food-title text-danger ">{{ item.name }}</h2>
+      <h2 class="food-title text-success">{{ item.shop_name }}</h2>
+      <div class="food-type-price">
+      <span class="food-type">{{ item.type }}</span>
+      <span class="food-price">Rs.{{ item.price | stringformat:'d' }}</span>
+      </div>
+      </div>
+    </div>
+    </a>
+    {% endfor %}
+  </div>
+  </div>
+</div>
+</section>
+ 
+{% endblock content %}

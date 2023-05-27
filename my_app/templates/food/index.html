@@ -1,0 +1,38 @@
+{% extends 'food/layouts/main.html' %}
+{% block title %}
+Home Page | Food-courier
+{% endblock title %}
+
+{% block content %}
+{% include 'food/inc/slider.html' %}
+<div class="products">
+  <h3 class="txtfood">Most Favourite</h3>
+</div>
+<section class=" bg-secondary " style="min-height:600px;">
+  <div class="containers">
+    <div class="row">
+      <div class="col-12">
+        <h4 class="mb-3 text-light"> Most Favourite</h4>
+        <hr style="border-color:#b8bfc2;">
+        {% include 'food/inc/message.html' %}
+      </div>
+      
+
+      <div class="shop-content">
+        {% for item in products %}
+      <a href="{% url 'food_price' item.category.name item.name %}">
+        <div class="food-box">
+         <div class="pic"><img src="{{item.product_image.url}}"class="food-img" alt="Categories"></div>
+         <div class="anger">
+          <h2 class="food-title text-dark">{{ item.name }}</h2>
+         </div>
+       </div>
+       </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+    
+

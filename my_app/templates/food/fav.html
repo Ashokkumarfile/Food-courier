@@ -1,0 +1,36 @@
+{% extends 'food/layouts/main.html' %}
+{% block title %}
+  Favourites | Food-courier
+{% endblock title %}
+{% block content %}
+  <section class="bg-secondary py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3 text-light">Favourite Item</h4>
+          <hr style="border-color:#b8bfc2;">
+        </div>
+      
+        <table class="table table-hover table align-middle">
+            <tr class="table-secondary">
+                <th class="text-dark" scope="col">Image</th>
+                <th class="text-dark" scope="col">Product Name</th>
+                <th class="text-dark" scope="col">Unit</th>
+                <th class="text-dark" scope="col">Remove</th>
+            </tr>
+            {% for item in fav %}
+           <tr>
+            <td><img src="{{item.product.product_image.url}}" style="height: 80px; margin-top:10px; width: 100px; background-color: aliceblue; padding: 4px;"  alt="{{item.product.name}}"></td>
+              <td class="text-light">{{item.product.name}}</td>
+              <td class="text-light">{{item.product.price | stringformat:'d'}}</td>
+              <td><a href="{% url 'remove_fav' item.id %}"  onclick="return confirm('Are you sure? to Remove')"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</a></td>
+            </tr>
+            {% endfor %}
+            
+            <tr>
+        </table>
+       
+      </div>
+      </div>
+  </section>
+{% endblock content %}
